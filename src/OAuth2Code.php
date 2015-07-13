@@ -36,11 +36,13 @@
   }
   
   // If this page was called directly, display a helpful message.
-  ?>
-  
-    <p>This page is designed to receive OAuth2 redirects. To begin the OAuth2
-    process, visit the <a href="OAuth2Authorize.php">OAuth2 Authorize</a> page.</p>
-  
-  <?php
+  else {
+    ?>
+    
+      <p>This page is designed to receive OAuth2 redirects. To begin the OAuth2
+      process, visit the <a href="OAuth2Authorize.php">OAuth2 Authorize</a> page.</p>
+    
+    <?php
+  }
 
   include '_footer.php';

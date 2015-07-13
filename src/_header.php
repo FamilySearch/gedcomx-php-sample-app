@@ -17,7 +17,7 @@
           <a class="navbar-brand" href="/">Gedcom X PHP Sample App</a>
         </div>
         <div class="collapse navbar-collapse">
-          <p class="navbar-text navbar-right"><a class="navbar-link" href="https://github.com/FamilySearch/gedcomx-php">GitHub</a></p>
+          <p class="navbar-text navbar-right"><a class="navbar-link" href="https://github.com/FamilySearch/gedcomx-php" target="_blank">GitHub</a></p>
         </div>
       </div>
     </nav>
