@@ -24,15 +24,6 @@
     <div class="container"><!-- start main container -->
       <div class="row">
         
-        <div id="sidebar" class="col-sm-3">
-          
-          <div class="panel panel-default">
-            <div class="panel-heading">Authentication</div>
-            <div class="list-group">
-              <a href="/OAuth2Authorize.php" class="list-group-item">OAuth2 Authorize</a>
-              <a href="/OAuth2Code.php" class="list-group-item">OAuth2 Code</a>
-            </div>
-          </div>
-          
-        </div>
+        <?php include '_sidebar.php'; ?>
+        
         <div class="col-sm-9"><!-- start main column -->
