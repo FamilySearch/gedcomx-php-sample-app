@@ -10,6 +10,12 @@
         'title' => 'OAuth2 Code',
         'url' => 'OAuth2Code.php'
       )
+    ),
+    'Person' => array(
+      array(
+        'title' => 'Read Current User Person',
+        'url' => 'CurrentUserPerson.php'
+      )  
     )
   );
   
