@@ -15,7 +15,11 @@
       array(
         'title' => 'Read Current User Person',
         'url' => 'CurrentUserPerson.php'
-      )  
+      ),
+      array(
+        'title' => 'Read Person By Id',
+        'url' => 'ReadPerson.php'
+      )
     )
   );
   

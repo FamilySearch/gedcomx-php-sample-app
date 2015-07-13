@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "80793b13e6c5eb5b8538a43aad685edb",
+    "hash": "5958e2515a875633670727343a5525bb",
     "packages": [
         {
             "name": "gedcomx/gedcomx-php",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FamilySearch/gedcomx-php.git",
-                "reference": "62b73accdc2f341af8bda391f0f699b8da8743ef"
+                "reference": "1808ad932fbe479b4ab541b524d431ef910f9b6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FamilySearch/gedcomx-php/zipball/62b73accdc2f341af8bda391f0f699b8da8743ef",
-                "reference": "62b73accdc2f341af8bda391f0f699b8da8743ef",
+                "url": "https://api.github.com/repos/FamilySearch/gedcomx-php/zipball/1808ad932fbe479b4ab541b524d431ef910f9b6a",
+                "reference": "1808ad932fbe479b4ab541b524d431ef910f9b6a",
                 "shasum": ""
             },
             "require": {
@@ -56,7 +56,7 @@
                 "genealogy",
                 "sdk"
             ],
-            "time": "2015-06-30 14:16:15"
+            "time": "2015-07-13 17:26:01"
         },
         {
             "name": "guzzle/guzzle",
