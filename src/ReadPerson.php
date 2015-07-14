@@ -36,7 +36,7 @@
       $person = $response->getPerson();
       
       // Print the person's information
-      echo '<pre>',print_r($person, true),'</pre>';
+      printPerson($person);
     
     }
   
