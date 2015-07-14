@@ -79,7 +79,24 @@
     echo '<h3>Facts</h3>';
     foreach($person->getFacts() as $fact){
         $date = $fact->getDate();
+        $normalizedDates = array();
+        $normalizedDate = '';
+        if($date){
+          $normalizedDates = $date->getNormalizedExtensions();
+          if(count($normalizedDates)){
+            $normalizedDate = $normalizedDates[0]->getValue();
+          }
+        }
+        
         $place = $fact->getPlace();
+        $normalizedPlaces = array();
+        $normalizedPlace = '';
+        if($place){
+          $normalizedPlaces = $place->getNormalizedExtensions();
+          if(count($normalizedPlaces)){
+            $normalizedPlace = $normalizedPlaces[0]->getValue();
+          }
+        }
       ?>
       <div class="panel panel-default">
         <div class="panel-heading"><code><?= $fact->getType(); ?></code></div>
@@ -92,7 +109,7 @@
           <tr>
             <td><?= $fact->getValue(); ?></td>
             <td><?= $place ? $place->getOriginal() : ''; ?></td>
-            <td><?= $place ? $place->getNormalizedExtensions()[0] : ''; ?></td>
+            <td><?= $normalizedPlace; ?></td>
           </tr>
           <tr>
             <th>Date - Original</th>
@@ -102,7 +119,7 @@
           <tr>
             <td><?= $date ? $date->getOriginal() : ''; ?></td>
             <td><?= $date ? $date->getFormal() : ''; ?></td>
-            <td><?= $date ? $date->getNormalizedExtensions()[0] : ''; ?></td>
+            <td><?= $normalizedDate; ?></td>
           </tr>
         </table>
       </div>
