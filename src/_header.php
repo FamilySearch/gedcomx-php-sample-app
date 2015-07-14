@@ -22,6 +22,7 @@
       </div>
     </nav>
     <div class="container"><!-- start main container -->
+
       <div class="row">
         
         <?php include '_sidebar.php'; ?>

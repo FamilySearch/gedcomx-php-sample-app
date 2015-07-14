@@ -4,13 +4,10 @@
 
   // If the request resulted in an error then display the message.
   if(isset($_GET['error'])) {
-    ?>
-      <div class="alert alert-danger">
-        <p class="lead">There was an error while authenticating.</p>
-        <p>Error type: <?= $_GET['error']; ?></p>
-        <p>Error description: <?= $_GET['error_description']; ?></p>
-      </div>
-    <?php
+    $message = '<p class="lead">There was an error while authenticating.</p>
+        <p>Error type: ' . $_GET['error'] . '></p>
+        <p>Error description: ' . $_GET['error_description'] . '></p>';
+    printStatusMessage($message, 'danger');
   }
 
   // If the request is successful, get the code from the URL params
