@@ -30,6 +30,34 @@
       session so that future interactions in the sample app are authenticated.</p>
       <pre><?= $token; ?></pre>
     <?php
+    
+    // Get and store the user's information so that we can show
+    // their sign-in status in the header
+    $response = $client->familytree()->readCurrentUser();
+    
+    // Check for errors
+    if($response->hasError()){
+      handleErrors($response);
+    }
+    
+    // No errors
+    else {
+      
+      // Extract the user from the response
+      $user = $response->getUser();
+      
+      // Store the username. Sandbox users are generated with fake names that
+      // confuse us so we're just going to display the username that we login with.
+      $_SESSION['fs_username'] = $user->getContactName();
+      
+      ?>
+        <h2>Contact Name</h2>
+        <p>We have also stored your contact name (username) to display in the header
+        so that you can know when you're logged in to the sample app.</p>
+        <pre><?= $_SESSION['fs_username']; ?></pre>
+      <?php
+    }
+    
   }
   
   // If this page was called directly, display a helpful message.
