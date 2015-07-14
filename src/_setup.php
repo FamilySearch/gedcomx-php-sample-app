@@ -72,12 +72,42 @@
           ?>
         </table>
       </div>
-
       <?php
     }
     
     // Facts
     echo '<h3>Facts</h3>';
+    foreach($person->getFacts() as $fact){
+        $date = $fact->getDate();
+        $place = $fact->getPlace();
+      ?>
+      <div class="panel panel-default">
+        <div class="panel-heading"><code><?= $fact->getType(); ?></code></div>
+        <table class="table">
+          <tr>
+            <th>Value</th>
+            <th>Place - Original</th>
+            <th>Place - Normalized</th>
+          </tr>
+          <tr>
+            <td><?= $fact->getValue(); ?></td>
+            <td><?= $place ? $place->getOriginal() : ''; ?></td>
+            <td><?= $place ? $place->getNormalizedExtensions()[0] : ''; ?></td>
+          </tr>
+          <tr>
+            <th>Date - Original</th>
+            <th>Date - Formal</th>
+            <th>Date - Normalized</th>
+          </tr>
+          <tr>
+            <td><?= $date ? $date->getOriginal() : ''; ?></td>
+            <td><?= $date ? $date->getFormal() : ''; ?></td>
+            <td><?= $date ? $date->getNormalizedExtensions()[0] : ''; ?></td>
+          </tr>
+        </table>
+      </div>
+      <?php
+    }
     
     
     // Raw
