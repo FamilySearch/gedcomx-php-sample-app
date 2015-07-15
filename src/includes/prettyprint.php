@@ -43,6 +43,98 @@
   }
   
   /**
+   * Pretty print a relationship
+   */
+  function printRelationship($relationship){
+    $person1Id = $relationship->getPerson1()->getResourceId();
+    $person2Id = $relationship->getPerson2()->getResourceId();
+    ?>
+    <div class="panel panel-default">
+      <table class="table">
+        <tr>
+          <th>Relationship ID</th>
+          <th>Type</th>
+          <th>Person1 ID</th>
+          <th>Person2 ID</th>
+        </tr>
+        <tr>
+          <td><?= $relationship->getId(); ?></td>
+          <td><code><?= $relationship->getType(); ?></code></td>
+          <td><a href="/examples/ReadPerson.php?personId=<?= $person1Id; ?>"><?= $person1Id; ?></a></td>
+          <td><a href="/examples/ReadPerson.php?personId=<?= $person2Id; ?>"><?= $person2Id; ?></a></td>
+        </tr>
+      </table>
+    </div>
+    <?php
+    
+    // Facts
+    foreach($relationship->getFacts() as $fact){
+      printFact($fact, false);
+    }
+    
+    // Raw
+    echo '<pre>',print_r($relationship->toArray(), true),'</pre>';
+  }
+  
+  /**
+   * Pretty print a child and parents relationship
+   */
+  function printChildAndParentsRelationship($relationship){
+    $father = $relationship->getFather();
+    $fatherId = '';
+    if($father){
+      $fatherId = $father->getResourceId();
+    }
+    
+    $mother = $relationship->getMother();
+    $motherId = '';
+    if($mother){
+      $motherId = $mother->getResourceId();
+    }
+    
+    $child = $relationship->getChild();
+    $childId = '';
+    if($child){
+      $childId = $child->getResourceId();
+    }
+    ?>
+    <div class="panel panel-default">
+      <table class="table">
+        <tr>
+          <th>Father</th>
+          <th>Mother</th>
+          <th>Child</th>
+        </tr>
+        <tr>
+          <td><a href="/examples/ReadPerson.php?personId=<?= $fatherId; ?>"><?= $fatherId; ?></a></td>
+          <td><a href="/examples/ReadPerson.php?personId=<?= $motherId; ?>"><?= $motherId; ?></a></td>
+          <td><a href="/examples/ReadPerson.php?personId=<?= $childId; ?>"><?= $childId; ?></a></td>
+        </tr>
+      </table>
+    </div>
+    <?php
+    
+    // Father facts
+    if(count($relationship->getFatherFacts())){
+      echo '<h4>Father Facts</h4>';
+      foreach($relationship->getFatherFacts() as $fact){
+        printFact($fact);
+      }
+    }
+    
+    // Mother facts
+    if(count($relationship->getMotherFacts())){
+      echo '<h4>Mother Facts</h4>';
+      foreach($relationship->getMotherFacts() as $fact){
+        printFact($fact);
+      }
+    }
+    
+    // Raw
+    echo '<pre>',print_r($relationship->toArray(), true),'</pre>';
+  }
+  
+  /**
    * Pretty print a name
    */
   function printName($name){

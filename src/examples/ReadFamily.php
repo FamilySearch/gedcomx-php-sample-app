@@ -6,7 +6,12 @@
   $personId = isset($_GET['personId']) ? $_GET['personId'] : null;
   
 ?>
-
+  <style>
+    pre + h3 {
+      margin-top: 64px;
+    }
+  </style>
+  
   <form>
     <div class="row">
       <div class="form-group col-sm-6 col-md-4">
@@ -48,7 +53,7 @@
         
         // Retrieve a list of all relationships to parents from the response
         foreach($parentsResponse->getRelationshipsToParents() as $relationship){
-          echo '<pre>',print_r($relationship->toArray(), true),'</pre>';
+          printChildAndParentsRelationship($relationship);
         }
       }
       
@@ -64,7 +69,7 @@
         
         // Retrieve a list of all relationships to parents from the response
         foreach($spousesResponse->getSpouseRelationships() as $relationship){
-          echo '<pre>',print_r($relationship->toArray(), true),'</pre>';
+          printRelationship($relationship);
         }
       }
       
@@ -80,7 +85,7 @@
         
         // Retrieve a list of all relationships to parents from the response
         foreach($childResponse->getRelationshipsToChildren() as $relationship){
-          echo '<pre>',print_r($relationship->toArray(), true),'</pre>';
+          printChildAndParentsRelationship($relationship);
         }
       }
     
