@@ -3,7 +3,7 @@
 ?>
   
   <div class="jumbotron">
-    <p>Welcome to the Gedcom X PHP sample app. Sign in with FamilySearch to get started.</p>
+    <p>Welcome to the Gedcom X PHP sample app. Sign in with FamilySearch sandbox to get started.</p>
     <a href="/examples/OAuth2Authorize.php" class="btn btn-primary">Sign In</a>
   </div>
   
