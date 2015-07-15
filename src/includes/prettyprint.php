@@ -7,20 +7,40 @@
     
     if(!$person) return;
     
-    // Display Information
+    $personId = $person->getId();
     $displayInfo = $person->getDisplayExtension();
+    
     ?>
       <h1><?= $displayInfo->getName(); ?></h1>
-      <ul>
-        <?php if($person->isLiving()){ echo '<li><span class="label label-primary">Living</span></li>'; } ?>
-        <li>ID: <code><?= $person->getId(); ?></code></li>
-        <li>Gender: <code><?= $displayInfo->getGender(); ?></code></li>
-        <li>Lifespan: <code><?= $displayInfo->getLifespan(); ?></code></li>
-        <li>Birth Date: <code><?= $displayInfo->getBirthDate(); ?></code></li>
-        <li>Birth Place: <code><?= $displayInfo->getBirthPlace(); ?></code></li>
-        <li>Death Date: <code><?= $displayInfo->getDeathDate(); ?></code></li>
-        <li>Death Place: <code><?= $displayInfo->getDeathPlace(); ?></code></li>
-      </ul>
+      <h3>Display</h3>
+      <div class="panel panel-default">
+        <table class="table">
+          <tr>
+            <th>ID</th>
+            <th>Gender</th>
+            <th>Lifespan</th>
+            <th>Living</th>
+          </tr>
+          <tr>
+            <td><?= $personId; ?></td>
+            <td><?= $displayInfo->getGender(); ?></td>
+            <td><?= $displayInfo->getLifespan(); ?></td>
+            <td><?= $person->isLiving() ? 'Living' : 'Deceased'; ?></td>
+          </tr>
+          <tr>
+            <th>Birth Date</th>
+            <th>Birth Place</th>
+            <th>Death Date</th>
+            <th>Death Place</th>
+          </tr>
+          <tr>
+            <td><?= $displayInfo->getBirthDate(); ?></td>
+            <td><?= $displayInfo->getBirthPlace(); ?></td>
+            <td><?= $displayInfo->getDeathDate(); ?></td>
+            <td><?= $displayInfo->getDeathPlace(); ?></td>
+          </tr>
+        </table>
+      </div>
     <?php
     
     // Names
@@ -35,6 +55,18 @@
       printFact($fact);
     }
     
+    // Links to other sample app pages
+    ?>
+      <h3>Links</h3>
+      <div class="row">
+        <div class="col-sm-2">
+          <a class="btn btn-default" href="/examples/ReadFamily.php?personId=<?= $personId; ?>">Read Family</a>
+        </div>
+        <div class="col-sm-2">
+          <a class="btn btn-default" href="/examples/ReadAncestry.php?personId=<?= $personId; ?>">Read Ancestry</a>
+        </div>
+      </div>
+    <?php
     
     // Raw
     echo '<h3>Raw</h3>';
