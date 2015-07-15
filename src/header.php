@@ -1,5 +1,5 @@
 <?php
-  include '_setup.php'; 
+  include 'includes/setup.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gedcom X PHP Sample App</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/main.css" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -29,6 +30,6 @@
 
       <div class="row">
         
-        <?php include '_sidebar.php'; ?>
+        <?php include 'sidebar.php'; ?>
         
         <div class="col-sm-9"><!-- start main column -->

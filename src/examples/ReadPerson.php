@@ -1,7 +1,7 @@
 <?php
   
-  include '_header.php';
-  include '_prettyprint.php';
+  include '../header.php';
+  include '../includes/prettyprint.php';
   
   $personId = isset($_GET['personId']) ? $_GET['personId'] : null;
   
@@ -43,4 +43,4 @@
   
   }
   
-  include '_footer.php';
+  include '../footer.php';

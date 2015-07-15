@@ -1,6 +1,6 @@
 <?php
 
-  require '../vendor/autoload.php';
+  require __DIR__ . '/../../vendor/autoload.php';
   
   use Gedcomx\Extensions\FamilySearch\Rs\Client\FamilySearchClient;
   
@@ -9,7 +9,7 @@
   $clientOptions = array(
     'environment' => 'sandbox',
     'clientId' => 'a02j0000007s2BiAAI',
-    'redirectURI' => 'http://' . $_SERVER['HTTP_HOST'] . '/OAuth2Code.php'
+    'redirectURI' => 'http://' . $_SERVER['HTTP_HOST'] . '/examples/OAuth2Code.php'
   );
   
   if(isset($_SESSION['fs_access_token'])){
@@ -35,7 +35,7 @@
         if(isset($_SESSION['fs_access_token'])){
           $details = 'Your session has expired. <a href="/OAuth2Authorize.php">Sign in</a> again.';
         } else {
-          $details = '<a href="/OAuth2Authorize.php">Sign in</a> to use the sample app.';
+          $details = '<a href="/examples/OAuth2Authorize.php">Sign in</a> to use the sample app.';
         }
       }
       

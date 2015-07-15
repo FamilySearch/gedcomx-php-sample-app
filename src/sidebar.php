@@ -35,7 +35,7 @@
     <div class="panel-heading"><?= $groupTitle; ?></div>
     <div class="list-group">
       <?php foreach($pages as $page){ ?>
-      <a href="/<?= $page['url']; ?>" class="list-group-item"><?= $page['title']; ?></a>
+      <a href="/examples/<?= $page['url']; ?>" class="list-group-item"><?= $page['title']; ?></a>
       <?php } ?>
     </div>
   </div>

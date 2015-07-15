@@ -1,7 +1,7 @@
 <?php
   
-  include '_header.php';
-  include '_prettyprint.php';
+  include '../header.php';
+  include '../includes/prettyprint.php';
   
   // First we make a request to the API for the current user's person and save the response
   $response = $client->familytree()->readPersonForCurrentUser();
@@ -22,4 +22,4 @@
   
   }
   
-  include '_footer.php';
+  include '../footer.php';

@@ -1,6 +1,6 @@
 <?php
   
-  include '_header.php';
+  include '../header.php';
 
   // If the request resulted in an error then display the message.
   if(isset($_GET['error'])) {
@@ -64,8 +64,8 @@
   else {
     ?>
       <p>This page is designed to receive OAuth2 redirects. To begin the OAuth2
-      process, visit the <a href="OAuth2Authorize.php">OAuth2 Authorize</a> page.</p>
+      process, visit the <a href="/examples/OAuth2Authorize.php">OAuth2 Authorize</a> page.</p>
     <?php
   }
 
-  include '_footer.php';
+  include '../footer.php';
