@@ -17,12 +17,16 @@
         'url' => 'CurrentUserPerson.php'
       ),
       array(
-        'title' => 'Read Person By Id',
+        'title' => 'Read A Person By Id',
         'url' => 'ReadPerson.php'
       ),
       array(
         'title' => 'Read A Person\'s Family',
         'url' => 'ReadFamily.php'
+      ),
+      array(
+        'title' => 'Read A Person\'s Ancestry',
+        'url' => 'ReadAncestry.php'
       )
     )
   );

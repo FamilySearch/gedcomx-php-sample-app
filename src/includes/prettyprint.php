@@ -38,7 +38,7 @@
     
     // Raw
     echo '<h3>Raw</h3>';
-    echo '<pre>',print_r($person->toArray(), true),'</pre>';
+    rawDump($person->toArray());
     
   }
   
@@ -73,7 +73,7 @@
     }
     
     // Raw
-    echo '<pre>',print_r($relationship->toArray(), true),'</pre>';
+    rawDump($relationship->toArray());
   }
   
   /**
@@ -131,7 +131,7 @@
     }
     
     // Raw
-    echo '<pre>',print_r($relationship->toArray(), true),'</pre>';
+   rawDump($relationship->toArray());
   }
   
   /**
@@ -219,4 +219,11 @@
       </table>
     </div>
     <?php
+  }
+  
+  /**
+   * Pretty print a raw dump of the variable
+   */
+  function rawDump($var){
+    echo '<pre>',print_r($var, true),'</pre>';
   }
