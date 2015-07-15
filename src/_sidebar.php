@@ -19,6 +19,10 @@
       array(
         'title' => 'Read Person By Id',
         'url' => 'ReadPerson.php'
+      ),
+      array(
+        'title' => 'Read A Person\'s Family',
+        'url' => 'ReadFamily.php'
       )
     )
   );
