@@ -1,6 +1,7 @@
 <?php
   
   include '_header.php';
+  include '_prettyprint.php';
   
   $personId = isset($_GET['personId']) ? $_GET['personId'] : null;
   

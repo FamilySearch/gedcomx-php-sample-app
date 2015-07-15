@@ -1,6 +1,7 @@
 <?php
   
   include '_header.php';
+  include '_prettyprint.php';
   
   // First we make a request to the API for the current user's person and save the response
   $response = $client->familytree()->readPersonForCurrentUser();
