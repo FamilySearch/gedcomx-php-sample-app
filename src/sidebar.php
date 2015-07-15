@@ -27,6 +27,10 @@
       array(
         'title' => 'Read A Person\'s Ancestry',
         'url' => 'ReadAncestry.php'
+      ),
+      array(
+        'title' => 'Person Search',
+        'url' => 'PersonSearch.php'
       )
     )
   );
