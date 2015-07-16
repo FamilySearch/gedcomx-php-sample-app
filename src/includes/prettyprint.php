@@ -77,23 +77,34 @@
   /**
    * Pretty print a relationship
    */
-  function printRelationship($relationship){
-    $person1Id = $relationship->getPerson1()->getResourceId();
-    $person2Id = $relationship->getPerson2()->getResourceId();
+  function printRelationship($relationship, $person1, $person2){
+    $person1Id = $person1->getId();
+    $person2Id = $person2->getId();
     ?>
     <div class="panel panel-default">
+      <div class="panel-heading">Relationship</div>
       <table class="table">
         <tr>
           <th>Relationship ID</th>
           <th>Type</th>
-          <th>Person1 ID</th>
-          <th>Person2 ID</th>
+          <th>Person1</th>
+          <th>Person2</th>
         </tr>
         <tr>
           <td><?= $relationship->getId(); ?></td>
           <td><code><?= $relationship->getType(); ?></code></td>
           <td><a href="/examples/ReadPerson.php?personId=<?= $person1Id; ?>"><?= $person1Id; ?></a></td>
           <td><a href="/examples/ReadPerson.php?personId=<?= $person2Id; ?>"><?= $person2Id; ?></a></td>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+          <td><?= $person1->getDisplayExtension()->getName(); ?></td>
+          <td><?= $person2->getDisplayExtension()->getName(); ?></td>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+          <td><?= $person1->getDisplayExtension()->getLifespan(); ?></td>
+          <td><?= $person2->getDisplayExtension()->getLifespan(); ?></td>
         </tr>
       </table>
     </div>
@@ -111,26 +122,24 @@
   /**
    * Pretty print a child and parents relationship
    */
-  function printChildAndParentsRelationship($relationship){
-    $father = $relationship->getFather();
+  function printChildAndParentsRelationship($relationship, $father, $mother, $child){
     $fatherId = '';
     if($father){
-      $fatherId = $father->getResourceId();
+      $fatherId = $father->getId();
     }
     
-    $mother = $relationship->getMother();
     $motherId = '';
     if($mother){
-      $motherId = $mother->getResourceId();
+      $motherId = $mother->getId();
     }
     
-    $child = $relationship->getChild();
     $childId = '';
     if($child){
-      $childId = $child->getResourceId();
+      $childId = $child->getId();
     }
     ?>
     <div class="panel panel-default">
+      <div class="panel-heading">Child and Parents Relationship</div>
       <table class="table">
         <tr>
           <th>Father</th>
@@ -141,6 +150,16 @@
           <td><a href="/examples/ReadPerson.php?personId=<?= $fatherId; ?>"><?= $fatherId; ?></a></td>
           <td><a href="/examples/ReadPerson.php?personId=<?= $motherId; ?>"><?= $motherId; ?></a></td>
           <td><a href="/examples/ReadPerson.php?personId=<?= $childId; ?>"><?= $childId; ?></a></td>
+        </tr>
+        <tr>
+          <td><?= $father ? $father->getDisplayExtension()->getName() : ''; ?></td>
+          <td><?= $mother ? $mother->getDisplayExtension()->getName() : ''; ?></td>
+          <td><?= $child ? $child->getDisplayExtension()->getName() : ''; ?></td>
+        </tr>
+        <tr>
+          <td><?= $father ? $father->getDisplayExtension()->getLifespan() : ''; ?></td>
+          <td><?= $mother ? $mother->getDisplayExtension()->getLifespan() : ''; ?></td>
+          <td><?= $child ? $child->getDisplayExtension()->getLifespan() : ''; ?></td>
         </tr>
       </table>
     </div>
