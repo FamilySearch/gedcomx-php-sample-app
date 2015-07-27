@@ -2,7 +2,7 @@
   
   include '../header.php';
 
-  // If the request resulted in an error then display the message.
+  // If the request for the authorization code resulted in an error then display the message.
   if(isset($_GET['error'])) {
     $message = '<p class="lead">There was an error while authenticating.</p>
         <p>Error type: ' . $_GET['error'] . '></p>
@@ -11,8 +11,8 @@
   }
 
   // If the request is successful, get the code from the URL params
-  // and pass to the client object so that it can finish authorization
-  // and obtain an access token.
+  // and pass to the client object so that it can complete the authentication
+  // by obtaining an access token.
   else if(isset($_GET['code'])) {
     
     // Get the code from the URL params
@@ -26,13 +26,13 @@
     
     ?>
       <h2>Access Token</h2>
-      <p>Here's the access token we obtained via OAuth2. It has been stored in a
+      <p>Here's the access token we obtained. It has been stored in a
       session so that future interactions in the sample app are authenticated.</p>
       <pre><?= $token; ?></pre>
     <?php
     
     // Get and store the user's information so that we can show
-    // their sign-in status in the header
+    // the sign-in status in the header
     $response = $client->familytree()->readCurrentUser();
     
     // Check for errors
@@ -63,8 +63,10 @@
   // If this page was called directly, display a helpful message.
   else {
     ?>
-      <p>This page is designed to receive OAuth2 redirects. To begin the OAuth2
-      process, visit the <a href="/examples/OAuth2Authorize.php">OAuth2 Authorize</a> page.</p>
+      <p>This page is designed to receive authorization codes redirected from the FamilySearch login page,
+      and to exchange that code for an access token. 
+      You have not yet initiated the code to visit the FamilySearch login page.
+      To begin the FamilySearch authentication process, visit the <a href="/examples/OAuth2Authorize.php">OAuth2 Authorize</a> page.</p>
     <?php
   }
 
