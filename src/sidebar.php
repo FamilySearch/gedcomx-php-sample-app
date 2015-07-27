@@ -1,7 +1,7 @@
 <?php
 
   $groups = array(
-    'Authenciation' => array(
+    'AUTHENTICATION' => array(
       array(
         'title' => 'OAuth2 Authorize',
         'url' => 'OAuth2Authorize.php'
@@ -11,7 +11,7 @@
         'url' => 'OAuth2Code.php'
       )
     ),
-    'Person' => array(
+    'PERSON READ' => array(
       array(
         'title' => 'Read Current User Person',
         'url' => 'CurrentUserPerson.php'
