@@ -18,7 +18,7 @@
           <a class="navbar-brand" href="/">Gedcom X PHP Sample App</a>
         </div>
         <div class="collapse navbar-collapse">
-          <p class="navbar-text navbar-right"><a class="navbar-link" href="https://github.com/FamilySearch/gedcomx-php" target="_blank">GitHub</a></p>
+          <p class="navbar-text navbar-right"><a class="navbar-link" href="https://github.com/FamilySearch/gedcomx-php" target="_blank">SDK</a></p>
           <?php if(isset($_SESSION['fs_username'])){ ?>
           <p class="navbar-text navbar-right"><a class="navbar-link" href="/logout.php">Logout</a></p>
           <p class="navbar-text navbar-right"><?= $_SESSION['fs_username']; ?></p>
