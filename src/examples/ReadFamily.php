@@ -39,13 +39,9 @@
     else {
     
       // As we request this person's relationships and all other persons
-      // in the relationships, we will not another reference to the primary
-      // person so we will keep a reference to it now for use later
+      // in those relationships, we will not get another reference to the primary
+      // person so we will keep a reference to it now for later use.
       $person = $personResponse->getPerson();
-      
-      // We will keep a running list of all persons so that we can properly 
-      // assemble families later
-      $persons = array($person);
       
       echo '<h3>Parent Relationships</h3>';
       
@@ -57,18 +53,14 @@
         handleErrors($parentsResponse);
       } else {
         
-        // Merge the list of parents into our running list of persons
-        $persons = array_merge($persons, $parentsResponse->getPersons());
-        
         // Print each child and parents relationships in the response
         foreach($parentsResponse->getChildAndParentsRelationships() as $relationship){
           
-          // Get the father and mother ids
-          list($fatherId, $motherId, $childId) = getChildAndParentsRelationshipRoleIds($relationship);
-          
-          // Get the father and mother person objects.
-          $father = getPersonFromList($persons, $fatherId);
-          $mother = getPersonFromList($persons, $motherId);
+          // Get the father and mother person objects. getFather() and getMother()
+          // return a ResourceReference which is passed to getPerson() so that
+          // we can extract those persons from the response.
+          $father = $parentsResponse->getPerson($relationship->getFather());
+          $mother = $parentsResponse->getPerson($relationship->getMother());
           
           // We don't extract the child because it's the primary person and therefore
           // not included in the response. But we already have a reference to
@@ -88,19 +80,22 @@
         handleErrors($spousesResponse);
       } else {
         
-        // Merge the list of spouses into our running list of persons
-        $persons = array_merge($persons, $spousesResponse->getPersons());
-        
         // Retrieve a list of all couple relationships from the response
         foreach($spousesResponse->getRelationships() as $relationship){
           
-          $person1Id = $relationship->getPerson1()->getResourceId();
-          $person1 = getPersonFromList($persons, $person1Id);
+          // The spouses response only includes spouses; it does not include
+          // the main person. Therefore we have to figure out whether person1
+          // or person2 is the spouse and then extract them from the response.
+          // We already have a reference to the main person from above.
+          if($relationship->getPerson1()->getResourceId() === $person->getId()){
+            $spouse1 = $person;
+            $spouse2 = $spousesResponse->getPerson($relationship->getPerson2());
+          } else {
+            $spouse1 = $spousesResponse->getPerson($relationship->getPerson1());
+            $spouse2 = $person;
+          }
           
-          $person2Id = $relationship->getPerson2()->getResourceId();
-          $person2 = getPersonFromList($persons, $person2Id);
-          
-          printRelationship($relationship, $person1, $person2);
+          printRelationship($relationship, $spouse1, $spouse2);
         }
       }
       
@@ -114,25 +109,29 @@
         handleErrors($childrenResponse);
       } else {
         
-        // Merge the list of children into our running list of persons.
-        // The response _only_ contains children, not the parents. One of the
-        // parents is the primary person which we stored above. The other person
-        // is likely a spouse, which we also stored above, but not necessarily.
-        // A child and parents relationship can exist without the two parents
-        // having a spouse relationship. In those cases you'll need to make an
-        // additional request request for the missing parent. We don't do that here.
-        $persons = array_merge($persons, $childrenResponse->getPersons());
-        
         // Print each child and parents relationships in the response
         foreach($childrenResponse->getChildAndParentsRelationships() as $relationship){
           
-          // Get the father and mother ids
-          list($fatherId, $motherId, $childId) = getChildAndParentsRelationshipRoleIds($relationship);
+          // The children response _only_ contains children; it does not contain
+          // the parents. We know that one of the parents is the primary person
+          // which we have a reference to from above. We need to figure out whether
+          // they are the mother or father.
+          //
+          // The other parent is likely a spouse in which case we have a 
+          // reference to them in the spouses response. But the other parent 
+          // doesn't have to be a spouse. A child and parents relationship can 
+          // exist without the two parents having a spouse relationship. 
+          // In those cases you'll need to make an additional request for the 
+          // other parent. We don't do that here.
           
-          // Get the father and mother person objects.
-          $father = getPersonFromList($persons, $fatherId);
-          $mother = getPersonFromList($persons, $motherId);
-          $child = getPersonFromList($persons, $childId);
+          $child = $childrenResponse->getPerson($relationship->getChild());
+          if($relationship->getFather()->getResourceId() === $person->getId()){
+            $father = $person;
+            $mother = $spousesResponse->getPerson($relationship->getMother());
+          } else {
+            $mother = $person;
+            $father = $spousesResponse->getPerson($relationship->getFather());
+          }
           
           printChildAndParentsRelationship($relationship, $father, $mother, $child);
         }
@@ -141,48 +140,6 @@
       // TODO: show how to assemble families?
     }
   
-  }
-  
-  /**
-   * Get the IDs of all persons in the child and parents relationship.
-   * Returns array($fatherId, $motherId, $childId)
-   */
-  function getChildAndParentsRelationshipRoleIds($relationship){
-    return array(
-      getChildAndParentsRelationshipRoleId($relationship, 'father'),
-      getChildAndParentsRelationshipRoleId($relationship, 'mother'),
-      getChildAndParentsRelationshipRoleId($relationship, 'child')
-    );
-  }
-  
-  /**
-   * Retrieve a person ID from a child and parents relationship.
-   */
-  function getChildAndParentsRelationshipRoleId($relationship, $role){
-    $reference = null;
-    if($role === 'mother'){
-      $reference = $relationship->getMother();
-    } else if($role === 'father'){
-      $reference = $relationship->getFather();
-    } else if($role === 'child'){
-      $reference = $relationship->getChild();
-    }
-    if($reference){
-      return $reference->getResourceId();
-    } else {
-      return null;
-    }
-  }
-  
-  /**
-   * Get the specified person from an array of persons
-   */
-  function getPersonFromList($persons, $personId){
-    foreach($persons as $person){
-      if($person->getId() === $personId){
-        return $person;
-      }
-    }
   }
   
   include '../footer.php';
