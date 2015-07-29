@@ -3,11 +3,7 @@
   $groups = array(
     'AUTHENTICATION' => array(
       array(
-        'title' => 'OAuth2 Authorize',
-        'url' => 'OAuth2Authorize.php'
-      ),
-      array(
-        'title' => 'OAuth2 Code',
+        'title' => 'FamilySearch Authentication',
         'url' => 'OAuth2Code.php'
       )
     ),

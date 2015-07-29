@@ -60,14 +60,12 @@
     
   }
   
-  // If this page was called directly, display a helpful message.
+  // If this page was called directly with no parameters then begin OAuth
   else {
-    ?>
-      <p>This page is designed to receive authorization codes redirected from the FamilySearch login page,
-      and to exchange that code for an access token. 
-      You have not yet initiated the code to visit the FamilySearch login page.
-      To begin the FamilySearch authentication process, visit the <a href="/examples/OAuth2Authorize.php">OAuth2 Authorize</a> page.</p>
-    <?php
+    
+    // Ask the SDK client object to generate the authorization
+    // URL to being OAuth then forward the user to that URL
+    header('Location: ' . $client->getOAuth2AuthorizationURI());
   }
 
   include '../footer.php';
