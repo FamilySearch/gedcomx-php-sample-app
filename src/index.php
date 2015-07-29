@@ -3,8 +3,7 @@
 ?>
   
   <div class="jumbotron">
-    <p>Welcome to the Gedcom X PHP sample app. Sign in with the FamilySearch sandbox to get started.</p>
-    <a href="/examples/OAuth2Code.php" class="btn btn-primary">Sign In</a>
+    <p>Click "FamilySearch Authentication" in the sidebar menu to get started, then you can try the other menu options.</p>
   </div>
   
 <?php
