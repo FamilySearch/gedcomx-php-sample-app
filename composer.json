@@ -1,8 +1,9 @@
 {
     "name": "familysearch/gedcomx-php-sample-app",
     "type": "project",
+    "minimum-stability": "dev",
     "require": {
-        "gedcomx/gedcomx-php": "^1.1.1"
+        "gedcomx/gedcomx-php": "^2.0.1"
     },
     "license": "Apache-2.0",
     "authors": [
