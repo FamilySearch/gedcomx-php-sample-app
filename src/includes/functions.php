@@ -15,9 +15,9 @@
       if($response->hasStatus(401)){
         $type = 'warning';
         if(isset($_SESSION['fs_access_token'])){
-          $details = 'Your session has expired. <a href="/OAuth2Authorize.php">Sign in</a> again.';
+          $details = 'Your session has expired. <a href="/examples/OAuth2Code.php">Sign in</a> again.';
         } else {
-          $details = '<a href="/examples/OAuth2Authorize.php">Sign in</a> to use the sample app.';
+          $details = '<a href="/examples/OAuth2Code.php">Sign in</a> to use the sample app.';
         }
       }
       
