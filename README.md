@@ -1,3 +1,5 @@
+⚠️ *This project is deprecated and no longer supported*
+
 # gedcomx-php-sample-app
 
 An application that demonstrates the usage of the [gedcomx-php](https://github.com/FamilySearch/gedcomx-php) library in conjunction with the FamilySearch API.
